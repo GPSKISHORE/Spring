@@ -1,19 +1,20 @@
 package com.tcs.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.tcs.bo.EMPbo;
 import com.tcs.dao.IEMPdao;
 import com.tcs.dto.EMPdto;
 
+@Service
 public class EMPService implements IEMPService{
 
 	private static Float Netsal;
 	private static Float Gross;
+	@Autowired
 	private IEMPdao dao;
-	
-	public EMPService(IEMPdao dao) {
-		this.dao = dao;
-	}
-	
+
 	public String assignDTO(EMPdto dto) throws Exception {
 		
 		String des = dto.getDESCIGNATION();

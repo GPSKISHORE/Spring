@@ -5,16 +5,17 @@ import java.sql.PreparedStatement;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.tcs.bo.EMPbo;
 
+@Repository
 public class EMPdao implements IEMPdao{
 
+	@Autowired
 	private DataSource ds;
-	
-	public EMPdao(DataSource ds) {
-		this.ds=ds;
-	}
-	
+
 	@Override
 	public int resultdao(EMPbo bo) throws Exception{
 		
@@ -29,8 +30,8 @@ public class EMPdao implements IEMPdao{
 		ps.setFloat(5, bo.getGROSSSAL());
 		
 		int i = ps.executeUpdate();
-		
+
 		return i;
 	}
-
+	
 }
