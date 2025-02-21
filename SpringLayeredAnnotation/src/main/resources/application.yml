@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: SpringLayeredAnnotation
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: system
+    password: Kishore@1234
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+shiva:
+  io:
+    name: Kishore
+    data1:
+    - java
+    - Spring
+    - SQL
+    data2: jdbc,servlets,jdbc
+    data3:
+      Hyderabad: fine
+      Bengaluru: Expensive
+      Home: Excellent
+    data4:
+      per1: amma
+      per2: nanna
+      per3: tambi
