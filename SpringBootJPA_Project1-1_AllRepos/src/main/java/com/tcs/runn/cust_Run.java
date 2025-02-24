@@ -18,17 +18,19 @@ public class cust_Run implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
+		ics.getRelData("s%","Cash").forEach(System.out::println);
+		
 		//String trx_ref = LocalDateTime.now().toString().replace("-", "").replace(":", "").substring(0,15)+"GSR";
 		//Cust_Entity_Model cem = new Cust_Entity_Model();
 		
 //		ics.cust_sort_data(true, "custName").forEach(System.out::println);
 //		System.out.println();
-		Page<Cust_Entity_Model> p1=ics.getPag(1, 2, true, "custName");
-		System.out.println(p1.getNumber());
-		System.out.println(p1.getSize());
-		System.out.println(p1.getTotalPages());
-		System.out.println(p1.getPageable());
-		System.out.println(p1.getContent());
+//		Page<Cust_Entity_Model> p1=ics.getPag(1, 2, true, "custName");
+//		System.out.println(p1.getNumber());
+//		System.out.println(p1.getSize());
+//		System.out.println(p1.getTotalPages());
+//		System.out.println(p1.getPageable());
+//		System.out.println(p1.getContent());
 		
 //		cem.setCust_Mob_Number(7661980740L);
 //		cem.setCust_Name("Sri Ram");

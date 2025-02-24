@@ -33,7 +33,8 @@ public class Cust_Entity_Model {
 	@NonNull
 	private Float Bill_Amount;
 	@NonNull
-	private String Trx_Type;
+	@Column(name = "Trx_Type")
+	private String trxType;
 	@NonNull
 	private String Trx_Refe_Num;
 	

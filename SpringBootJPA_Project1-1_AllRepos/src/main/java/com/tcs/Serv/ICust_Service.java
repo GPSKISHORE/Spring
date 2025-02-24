@@ -1,5 +1,7 @@
 package com.tcs.Serv;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import com.tcs.enty.Cust_Entity_Model;
@@ -11,4 +13,6 @@ public interface ICust_Service {
 	public Iterable<Cust_Entity_Model> cust_sort_data(boolean asc, String... prop);
 
 	public Page<Cust_Entity_Model> getPag(int pagn, int totalPage, boolean asc, String... args);
+	
+	public List<Cust_Entity_Model> getRelData(String name,String ty);
 }

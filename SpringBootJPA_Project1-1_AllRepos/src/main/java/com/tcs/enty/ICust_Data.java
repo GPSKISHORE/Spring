@@ -1,7 +1,10 @@
 package com.tcs.enty;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
+import java.util.List;
 
-public interface ICust_Data extends PagingAndSortingRepository<Cust_Entity_Model, Integer>{
+import org.springframework.data.jpa.repository.JpaRepository;
 
+public interface ICust_Data extends JpaRepository<Cust_Entity_Model, Integer>{
+
+	public List<Cust_Entity_Model> findBycustNameLikeIgnoreCase(String name);
 }

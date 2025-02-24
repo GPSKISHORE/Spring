@@ -1,5 +1,7 @@
 package com.tcs.Serv;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -33,6 +35,13 @@ public class Cust_Service implements ICust_Service {
 	public Page<Cust_Entity_Model> getPag(int pagn, int totalPage, boolean asc, String... args) {
 		Pageable p1 = PageRequest.of(pagn, totalPage, asc?Direction.ASC:Direction.DESC, args); 
 		return icd.findAll(p1);
+	}
+
+	@Override
+	public List<Cust_Entity_Model> getRelData(String name,String tx) {
+		
+		//return icd.findByCustNameOrTrxType(name,tx);
+		return icd.findBycustNameLikeIgnoreCase(name);
 	}
 
 }
