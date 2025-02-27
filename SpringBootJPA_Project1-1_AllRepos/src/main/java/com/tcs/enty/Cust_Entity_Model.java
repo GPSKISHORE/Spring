@@ -31,12 +31,14 @@ public class Cust_Entity_Model {
 	@Column(name = "Cust_Name")
 	private String custName;
 	@NonNull
-	private Float Bill_Amount;
+	@Column(name = "Bill_Amount")
+	private Float billAmount;
 	@NonNull
 	@Column(name = "Trx_Type")
 	private String trxType;
 	@NonNull
-	private String Trx_Refe_Num;
+	@Column(name = "Trx_Refe_Num")
+	private String trxRefeNum;
 	
 	private Timestamp Last_Visit_Date;
 }

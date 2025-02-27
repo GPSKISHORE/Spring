@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import com.tcs.enty.Cust_Entity_Model;
+import com.tcs.enty.RequiredCols2;
 
 public interface ICust_Service {
 
@@ -14,5 +15,5 @@ public interface ICust_Service {
 
 	public Page<Cust_Entity_Model> getPag(int pagn, int totalPage, boolean asc, String... args);
 	
-	public List<Cust_Entity_Model> getRelData(String name,String ty);
+	public  <T extends RequiredCols2> List<T> getRelData(String name,float tx,float tx2,Class cl);
 }

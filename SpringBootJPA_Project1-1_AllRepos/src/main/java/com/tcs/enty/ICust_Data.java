@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ICust_Data extends JpaRepository<Cust_Entity_Model, Integer>{
 
-	public List<Cust_Entity_Model> findBycustNameLikeIgnoreCase(String name);
+	public <T extends RequiredCols1> List<T> findByCustNameNotLikeAndBillAmountBetweenOrderByCustName(String name,float tx,float tx1,Class<T> cl);
 }

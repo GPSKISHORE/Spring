@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.tcs.enty.Cust_Entity_Model;
 import com.tcs.enty.ICust_Data;
+import com.tcs.enty.RequiredCols2;
 
 @Service
 public class Cust_Service implements ICust_Service {
@@ -38,10 +39,10 @@ public class Cust_Service implements ICust_Service {
 	}
 
 	@Override
-	public List<Cust_Entity_Model> getRelData(String name,String tx) {
-		
+	public <T extends RequiredCols2> List<T> getRelData(String name,float tx,float tx2,Class cl) {
+		System.out.println(icd.getClass());
 		//return icd.findByCustNameOrTrxType(name,tx);
-		return icd.findBycustNameLikeIgnoreCase(name);
+		return icd.findByCustNameNotLikeAndBillAmountBetweenOrderByCustName(name,tx,tx2,cl);
 	}
 
 }
