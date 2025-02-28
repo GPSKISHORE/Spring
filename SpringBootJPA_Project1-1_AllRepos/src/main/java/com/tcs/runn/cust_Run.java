@@ -1,5 +1,6 @@
 package com.tcs.runn;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import com.tcs.Serv.ICust_Service;
+import com.tcs.enty.Cust_Entity_Model;
 import com.tcs.enty.ICust_Data;
 import com.tcs.enty.RequiredCols2;
 
@@ -40,6 +42,14 @@ public class cust_Run implements CommandLineRunner{
 		});
 		
 		System.out.println("-->> "+url);
+		
+		Cust_Entity_Model cem =icd.gatherSal("Shiva");
+		System.out.println(cem.getCustName()+" - "+cem.getTrxRefeNum());
+		
+		Object cem1 =icd.gatherSelectedSal("Shiva");
+		Object ob[] = (Object[]) cem1;
+		Arrays.stream(ob).forEach(System.out::println);
+		//System.out.println(ob[0]+" - "+ob[1]);
 		//String trx_ref = LocalDateTime.now().toString().replace("-", "").replace(":", "").substring(0,15)+"GSR";
 		//Cust_Entity_Model cem = new Cust_Entity_Model();
 		
