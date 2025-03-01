@@ -1,5 +1,6 @@
 package com.tcs.runn;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -49,6 +50,9 @@ public class cust_Run implements CommandLineRunner{
 		Object cem1 =icd.gatherSelectedSal("Shiva");
 		Object ob[] = (Object[]) cem1;
 		Arrays.stream(ob).forEach(System.out::println);
+		String trx_ref = LocalDateTime.now().toString().replace("-", "").replace(":", "").substring(0,15)+"GSR";
+		System.out.println(icd.modifyData(2500f, "Shiva"));
+		System.out.println(icd.insertData(2500f, "Eswar","Phone Pay",trx_ref));
 		//System.out.println(ob[0]+" - "+ob[1]);
 		//String trx_ref = LocalDateTime.now().toString().replace("-", "").replace(":", "").substring(0,15)+"GSR";
 		//Cust_Entity_Model cem = new Cust_Entity_Model();
