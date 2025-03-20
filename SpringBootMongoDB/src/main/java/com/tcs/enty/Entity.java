@@ -5,6 +5,7 @@ import java.io.Serializable;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +20,8 @@ public class Entity implements Serializable{
 
 	@Id
 	private String sno;
-	private String Name;
+	@Field(name = "Name")
+	private String name;
 	private String House;
 	private String Vehicle;
 	private Integer Amount;
