@@ -14,4 +14,13 @@ public interface repoInter extends MongoRepository<Entity, String>{
 	
 	@Query(fields = "{sno:0,name:1,House:1}", value = "{$or:[{name:?0}, {name:?1}]}")
 	public List<Entity> getRecordsBasedonOrCon(String name,String name2);
+
+	@Query(value="{name : {$regex:?0}}")
+	public List<Entity> getRecordsUsingLike(String name);
+	
+	@Query(value = "{}",sort="{name:-1}")
+	public List<Entity> getRecordsUsingSort();	
+	
+	@Query(value = "{Gold:?0}",count = true)
+	public int getRecordsUsingCount(String name);	
 }

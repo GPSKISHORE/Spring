@@ -25,6 +25,23 @@ public class serve implements Iserve{
 		
 		return rpi.getRecordsBasedonOrCon(name,name2);
 	}
+
+	@Override
+	public List<Entity> fetRecordsUsingLike(String name) {
+		
+		return rpi.getRecordsUsingLike(name);
+	}
+
+	@Override
+	public List<Entity> getRecordsUsingSort() {
+		
+		return rpi.getRecordsUsingSort();
+	}
+
+	@Override
+	public int getRecordsUsingCount(String name) {
+		return rpi.getRecordsUsingCount(name);
+	}
 	
 	
 
