@@ -8,16 +8,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form:form modelAttribute="EmpEnty">
+<form:form modelAttribute="EmpEnty" path="*">
+<p style="color:red;text-align:center">
+
+
+</p>
 	<table>
 		<tr>
-		EMP Name : <form:input path="EName"/>
+		<td>EMP Name : <form:input path="EName"/><form:errors path="eName"></form:errors></td>
 		</tr>
 		<tr>
-			Salary :<form:input path="sal"/>
+			<td>Salary :<form:input path="sal"/><form:errors path="sal"></form:errors></td>
 		</tr>
 		<tr>
-		Designation : <form:input path="designation"/>
+		<td>Designation : <form:input path="designation"/><form:errors path="designation"></form:errors></td>
 		</tr>
 		<tr>
 			<td colspan="2"><input type="submit"></td>

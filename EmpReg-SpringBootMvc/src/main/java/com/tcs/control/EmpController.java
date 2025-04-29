@@ -5,18 +5,26 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tcs.enty.EmpEnty;
 import com.tcs.serv.IEmpServ;
+import com.tcs.validation.EmpValidator;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class EmpController {
 
 	@Autowired
 	private IEmpServ ies;
+	
+	@Autowired
+	private EmpValidator ev;
 	
 	@GetMapping("/")
 	public String hetHome() {
@@ -36,21 +44,34 @@ public class EmpController {
 	}
 	
 	@PostMapping("show_Data")
-	public String insrtDataTable(Map<String,Object> mp,@ModelAttribute("EmpEnty") EmpEnty ep) {
+	public String insrtDataTable(HttpSession hs,@ModelAttribute("EmpEnty") EmpEnty ep,BindingResult errors) {
+		if(errors.hasFieldErrors())
+			return "show_Data";
+		if(ev.supports(ep.getClass())) {
+			ev.validate(ep, errors);
+			if(errors.hasErrors())
+				return "show_Data";
+		}
+		if(ep.getDesignation().matches(".*\\d.*")) {
+			errors.rejectValue("eName", "Ename.reject");
+			return "show_data";
+		}else
+		if(ep.getDesignation().equalsIgnoreCase("Java")) {
+			errors.rejectValue("designation", "job.reject");
+			return "show_Data";
+		}
 		String res=ies.InsrtData(ep);
-		List<EmpEnty> li = ies.getData();
-		mp.put("records", li);
-		mp.put("response", res);
-		return "register";
+		hs.setAttribute("response", res);
+		return "redirect:register";
 	}
 	
 	@GetMapping("Delete_Data")
-	public String insrtDataTable(Map<String,Object> mp,@ModelAttribute("emoNum") int num) {
+	public String insrtDataTable(RedirectAttributes red,@ModelAttribute("emoNum") int num) {
 		String res = ies.DataDelete(num);
 		List<EmpEnty> li = ies.getData();
-		mp.put("records", li);
-		mp.put("response", res);
-		return "register";
+		red.addFlashAttribute("records", li);
+		red.addFlashAttribute("response", res);
+		return "redirect:register";
 	}
 	
 	@GetMapping("update_Data")
@@ -61,11 +82,9 @@ public class EmpController {
 	}
 	
 	@PostMapping("update_Data")
-	public String updateData1(@ModelAttribute("EmpEnty") EmpEnty ep,Map<String,Object> mp) {
+	public String updateData1(RedirectAttributes rat,@ModelAttribute("EmpEnty") EmpEnty ep,Map<String,Object> mp) {
 		String res=ies.InsrtData(ep);
-		List<EmpEnty> li = ies.getData();
-		mp.put("records", li);
-		mp.put("response", res.replace("inserted", "Updated"));
-		return "register";
+		rat.addFlashAttribute("response", res.replace("inserted", "Updated"));
+		return "redirect:register";
 	}
 }

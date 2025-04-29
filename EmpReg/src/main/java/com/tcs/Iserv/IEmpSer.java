@@ -1,0 +1,13 @@
+package com.tcs.Iserv;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import com.tcs.enty.EmpEnty;
+
+public interface IEmpSer {
+
+	public String Register(EmpEnty e);
+	public Page<EmpEnty> getRecords(Pageable pg);
+	public String DelData(int num);
+}

@@ -26,7 +26,7 @@ th,td,table{
 </style>
 </head>
 <body>
-	<form:form modelAttribute="enty">
+	<form:form modelAttribute="enty" path="*">
 		<c:if test="${!empty enty}">
 			<table border="1">
 			<tr>

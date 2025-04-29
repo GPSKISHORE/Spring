@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
 th,td,table{
 	border:3px solid;
@@ -35,11 +36,12 @@ h3{
 </style>
 </head>
 <body>
+<div class="container">
 <h1>Total Records</h1>
 <c:choose>
 	<c:when test="${!empty records}">
-		<table>
-			<tr>
+		<table class = "table table-hover">
+			<tr class="table-primary">
 				<th>EMP No</th>
 				<th>EMP Name</th>
 				<th>Salary</th>
@@ -62,5 +64,6 @@ h3{
 		<a id = "sd" href = "show_Data">Insert Records</a>
 	</c:when>
 </c:choose>
+</div>
 </body>
 </html>
