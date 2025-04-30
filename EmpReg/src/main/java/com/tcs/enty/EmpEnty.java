@@ -40,4 +40,6 @@ public class EmpEnty {
 	private String designation;
 	@Column(name="STATUS")
 	private String status = "Available";
+	@Column(name="COUNTRY")
+	private String country="India";
 }

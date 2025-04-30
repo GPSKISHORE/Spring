@@ -1,6 +1,9 @@
 package com.tcs.Iserv;
 
-import java.util.List;
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,6 +34,14 @@ public class EmpSer implements IEmpSer{
 	public Page<EmpEnty> getRecords(Pageable pg) {
 		
 		return er.findAll(pg);
+	}
+
+	@Override
+	public Set<String> getCon() {
+		Locale[] con = Locale.getAvailableLocales();
+		Set<String> country = new TreeSet<String>();
+		Arrays.stream(con).forEach(i -> country.add(i.getDisplayCountry()));
+		return country;
 	}
 
 	

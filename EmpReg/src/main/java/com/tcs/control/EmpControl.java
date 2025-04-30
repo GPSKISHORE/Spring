@@ -1,6 +1,7 @@
 package com.tcs.control;
 
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,6 +36,11 @@ public class EmpControl {
 //		mp.put("EmpEnty",new EmpEnty());
 //		return "Records";
 //	}
+	
+	@ModelAttribute("CountryInfo")
+	public Set<String> getCountry(){
+		return ie.getCon();
+	}
 
 	@GetMapping
 	public String HomePage(@PageableDefault(page=0,size=5,sort="emoNum",direction=Sort.Direction.ASC) Pageable page,Map<String, Object> mp) {
@@ -51,7 +57,7 @@ public class EmpControl {
 	@PostMapping("Dinsrt")
 	public String ReturnHome(@ModelAttribute("EmpEnty") EmpEnty ee, @RequestParam("gen") String ge, HttpSession hs,
 			BindingResult error,@RequestParam("isValid") String val) {
-		
+		System.out.println(ee);
 		if(val.equalsIgnoreCase("no")) {
 			System.out.println(val);
 			if (error.hasFieldErrors())

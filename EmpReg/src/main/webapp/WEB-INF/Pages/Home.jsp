@@ -42,7 +42,8 @@
         }
 
         input[type="text"],
-        input[type="number"] {
+        input[type="number"],
+        select {
             width: 100%;
             padding: 10px;
             font-size: 15px;
@@ -52,7 +53,8 @@
         }
 
         input[type="text"]:focus,
-        input[type="number"]:focus {
+        input[type="number"]:focus,
+        select:focus {
             border-color: #3f51b5;
             outline: none;
         }
@@ -81,7 +83,6 @@
             display: block;
         }
     </style>
-    <!-- noscript><h1>Please Enable Java Script</h1></noscript-->
     <script>
         function validations(form) {
             document.getElementById("eNameError").innerHTML = "";
@@ -112,13 +113,13 @@
     <div class="form-container">
         <h2>Employee Registration</h2>
         <form:form modelAttribute="EmpEnty" action="Dinsrt" method="POST" onsubmit="return validations(this)">
-            	<input type="hidden" id="isValid" name = "isValid" value = "NO">
+            <input type="hidden" id="isValid" name="isValid" value="NO">
             <table>
                 <tr>
                     <td>Emp Name:</td>
                     <td>
-                        <form:input path="eName" name="eName" />
-                        <form:errors path="eName" cssClass="error" />
+                        <form:input path="eName" name="eName"/>
+                        <form:errors path="eName" cssClass="error"/>
                         <span id="eNameError" class="error"></span>
                     </td>
                 </tr>
@@ -126,7 +127,7 @@
                     <td>Salary:</td>
                     <td>
                         <form:input path="sal" type="number" name="sal"/>
-                        <form:errors path="sal" cssClass="error" />
+                        <form:errors path="sal" cssClass="error"/>
                         <span id="SalError" class="error"></span>
                     </td>
                 </tr>
@@ -134,14 +135,22 @@
                     <td>Designation:</td>
                     <td>
                         <form:input path="designation" name="designation"/>
-                        <form:errors path="designation" cssClass="error" />
+                        <form:errors path="designation" cssClass="error"/>
                         <span id="desError" class="error"></span>
                     </td>
                 </tr>
                 <tr>
                     <td>Gender:</td>
                     <td>
-	                  <input type = "text" name="gen"/>
+                        <input type="text" name="gen"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Country:</td>
+                    <td>
+                        <form:select path="country" cssClass="styled-select">
+                            <form:options items="${CountryInfo}"/>
+                        </form:select>
                     </td>
                 </tr>
                 <tr>
