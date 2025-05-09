@@ -43,7 +43,7 @@
 
         input[type="text"],
         input[type="number"],
-        select {
+        .dt, select {
             width: 100%;
             padding: 10px;
             font-size: 15px;
@@ -82,7 +82,20 @@
             margin-top: 4px;
             display: block;
         }
+
+        td label {
+            display: inline-flex;
+            align-items: center;
+            font-size: 14px;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+
+        input[type="radio"] {
+            margin-right: 6px;
+        }
     </style>
+
     <script>
         function validations(form) {
             document.getElementById("eNameError").innerHTML = "";
@@ -106,6 +119,11 @@
             }
             form.isValid.value = "YES";
             return val;
+        }
+
+        function sendReqForStates(frm) {
+            frm.action = "StateList";
+            frm.submit();
         }
     </script>
 </head>
@@ -142,15 +160,46 @@
                 <tr>
                     <td>Gender:</td>
                     <td>
-                        <input type="text" name="gen"/>
+                        <input type="text" name="gen" value="${gen}"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Country:</td>
                     <td>
-                        <form:select path="country" cssClass="styled-select">
+                        <form:select path="country" cssClass="styled-select" onchange="sendReqForStates(this.form)">
                             <form:options items="${CountryInfo}"/>
                         </form:select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>State:</td>
+                    <td>
+                        <form:select path="state" cssClass="styled-select">
+                            <form:options items="${stateList}"/>
+                        </form:select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>DOB:</td>
+                    <td>
+                        <form:input path="dob" name="dob" type="date" cssClass="dt"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>DOJ:</td>
+                    <td>
+                        <form:input path="doj" name="doj" type="date" cssClass="dt"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Previously Employed.?</td>
+                    <td>
+                        <label>
+                            <form:radiobutton path="previousemployye" value="true"/> Yes
+                        </label>
+                        <label>
+                            <form:radiobutton path="previousemployye" value="false"/> No
+                        </label>
                     </td>
                 </tr>
                 <tr>

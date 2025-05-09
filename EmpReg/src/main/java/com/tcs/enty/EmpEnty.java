@@ -14,6 +14,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -42,4 +43,10 @@ public class EmpEnty {
 	private String status = "Available";
 	@Column(name="COUNTRY")
 	private String country="India";
+	@Column(name="STATE")
+	private String state;
+	private Date dob = new Date();
+	private Date doj;
+	@Column(name = "PREVIOUS_EMPLOYEE")
+	private Boolean previousemployye=false;
 }

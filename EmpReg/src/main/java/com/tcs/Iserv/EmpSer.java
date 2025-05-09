@@ -1,11 +1,13 @@
 package com.tcs.Iserv;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -42,6 +44,15 @@ public class EmpSer implements IEmpSer{
 		Set<String> country = new TreeSet<String>();
 		Arrays.stream(con).forEach(i -> country.add(i.getDisplayCountry()));
 		return country;
+	}
+
+	@Autowired
+	Environment env;
+	@Override
+	public List<String> getStates(String state) {
+		String stateList = env.getProperty(state);
+		System.out.println(stateList);
+		return Arrays.asList(stateList.split(","));
 	}
 
 	
