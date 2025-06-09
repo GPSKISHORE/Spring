@@ -2,6 +2,8 @@ package com.tcs.enty;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,6 +44,7 @@ public class EmpEnty {
 	@Column(name="STATE")
 	private String state;
 	private Date dob = new Date();
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private Date doj;
 	@Column(name = "PREVIOUS_EMPLOYEE")
 	private Boolean previousemployye=false;

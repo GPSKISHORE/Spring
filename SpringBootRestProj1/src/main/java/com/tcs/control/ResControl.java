@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,5 +43,12 @@ public class ResControl {
 		EmpComp ec = new EmpComp("TCS", "Hyderabad", "27800", es.getEmpById(75), List.of("USA", "Dubai", "Kerala"),
 				Set.of("TCS", "HCL", "Wipro"), Map.of("Tenth", 8, "Inter", 945, "B.tech", 8));
 		return new ResponseEntity<EmpComp>(ec, HttpStatus.OK);
+	}
+	
+	@PostMapping("/Govindha")
+	public ResponseEntity<EmpComp> getReqBody(@RequestBody EmpComp stub){
+		stub.setEducation(Map.of("B.Tech",8));
+		stub.setLocation("MTM");
+		return new ResponseEntity<EmpComp>(stub,HttpStatus.OK);
 	}
 }
