@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form role="form" th.action="@{/ResPage}" th.Object = "EmpEnty">
+		<table>
+			<tr>
+				<label>EMP Number</label>
+				<td><input type ="number" th.field="*{emoNum}"></td>
+			</tr>
+			<tr>
+				<label>EMP Name</label>
+				<td><input type = "text" th.field="*{eName}"></td>
+			</tr>
+			<tr>
+				<label>Status of EMP</label>
+				<td><input type = "radio" th.field="*{status}" value = "Availabl">Available</td>
+				<td><input type = "radio" th.field="*{status}" value = "Not Availabl">Not Available</td>
+			</tr>
+			<tr>
+				<label>Designation</label>
+				<td><select th.field="*{designation}">
+					<option th.each="deg : ${Designation}" value="${deg}" th.text="${deg}"/>
+				</select></td>
+			</tr>
+			<tr>
+				<td><input type = "submit"></td>
+			</tr>
+		</table>
+	
+	</form>
+</body>
+</html>

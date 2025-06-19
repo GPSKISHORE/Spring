@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form role="form" th:action="@{/}" method="GET" th:object="${EmpEnty}">
+	<table>
+		<tr>
+			<td>Ename : <p th:text="*{eName}"></p></td>
+		</tr>
+		<tr>
+			<td>Number :<p th:text="*{emoNum}"></p></td>
+		</tr>
+		<tr>
+			<td>Designation - <p th:utext="*{designation}"/></td>
+		</tr>
+		<tr>
+			<td>Status - <p th:text="*{status}"/></td>
+		</tr>
+		<tr>
+			<td>Country - <p th:text="*{country}"/></td>
+		</tr>
+		<tr>
+			<td>Data From Prop - <p th:text="#{url}"/></td>
+		</tr>
+	</table>
+	<input type="submit" >
+</form>
+</body>
+</html>

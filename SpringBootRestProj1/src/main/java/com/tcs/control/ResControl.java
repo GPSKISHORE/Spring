@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,5 +51,17 @@ public class ResControl {
 		stub.setEducation(Map.of("B.Tech",8));
 		stub.setLocation("MTM");
 		return new ResponseEntity<EmpComp>(stub,HttpStatus.OK);
+	}
+	
+	@GetMapping("/Shakti/{num1}/{num2}")
+	public ResponseEntity<?> getDetails(@PathVariable("num1") String num11,@PathVariable String num2){
+		try {
+			System.out.println("ResControl.getDetails()");
+			return new ResponseEntity<List<EmpEnty>>(es.getEmp(num11, num2),HttpStatus.OK);
+		}catch(Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 	}
 }

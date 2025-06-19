@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function sub(){
+		var temp = document.getElementById("designation").value;
+		alert("temp -> "+temp);
+		if(temp==""){
+			alert("Designation Should not be empty")
+			return false;
+		}
+		return true;
+	}
+</script>
+</head>
+<body>
+	<form role="form" th:action="@{/Res}" th:object = "${EmpEnty}" method = "POST" onsubmit="return sub()">
+		<table>
+			<tr>
+				<td><label for ="emoNum">EMP Number</label></td>
+				<td><input type ="number" th.field="*{emoNum}"></td>
+			</tr>
+			<br>
+			<tr>
+				<td><label for="eName">EMP Name</label></td>
+				<td><input type = "text" th:field="*{eName}"></td>
+			</tr>
+			<br>
+			<tr>
+				<td><label>Status of EMP</label></td>
+				<td>
+					<input type = "radio" th:field="*{status}" value = "Availabl">Available
+					<input type = "radio" th:field="*{status}" value = "Not Availabl">Not Available
+				</td>
+			</tr>
+			<br>
+			<tr>
+				<td><label>Designation</label></td>
+				<td>
+					<select id="designation" th:field="*{designation}">
+						<option value = "">--Select--</option>
+						<option th:each="deg : ${Designation}" 
+								th:value="${deg}" 
+								th:text="${deg}">
+						</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Country</label></td>
+				<td>
+					<input type="text" th:text="*{country}" disabled="disabled">
+				</td>
+			</tr>
+			<tr>
+				<td><input type = "submit"></td>
+			</tr>
+		</table>
+	
+	</form>
+</body>
+</html>

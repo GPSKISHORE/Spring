@@ -1,4 +1,4 @@
-package com.tcs.enty;
+package com.krish.enty;
 
 import java.util.Date;
 
@@ -50,4 +50,3 @@ public class EmpEnty {
 	private Boolean previousemployye=false;
 	
 }
-
