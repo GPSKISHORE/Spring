@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tcs.enty.EmpComp;
 import com.tcs.enty.EmpEnty;
 import com.tcs.serv.IEmpServ;
@@ -105,7 +109,7 @@ public class EmpController {
 	private RestTemplate rt;
 	
 	@GetMapping("Connect")
-	public void RestData() {
+	public void RestData() throws JsonMappingException, JsonProcessingException {
 		RestTemplate rt = new RestTemplate();
 		//String url = "http://localhost:8080/SpringBootRestProj1/Shiva/Om";
 		String url = "http://localhost:8080/SpringBootRestProj1/Shiva/Shakti/{num}/{nam}";
@@ -128,5 +132,17 @@ public class EmpController {
 		System.out.println(res.getHeaders());
 		System.out.println(res.getClass());
 		System.out.println(res.ok());
+		String url1="http://localhost:8080/SpringBootRestProj1/Shiva/Om";
+		ResponseEntity<String> res1=rt.exchange(url1, HttpMethod.GET, null, String.class);//;(url1, HttpMethod.GET,);
+		ObjectMapper om = new ObjectMapper();
+		EmpEnty res2[]=om.readValue(res1.getBody(), EmpEnty[].class);
+		System.out.println(res2[0].getEName());
+		
+		String url2="http://localhost:8080/SpringBootRestProj1/Shiva/Maping";
+		ResponseEntity<String> res21 = rt.exchange(url2, HttpMethod.GET, null, String.class);
+		System.out.println("/============?////");
+		System.err.println(res21.getBody());
+		Map<String,Object> mp = om.readValue(res21.getBody(), new TypeReference<Map<String,Object>>(){});
+		System.out.println(mp);
 	}
 }

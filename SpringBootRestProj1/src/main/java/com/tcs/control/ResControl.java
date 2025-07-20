@@ -61,7 +61,11 @@ public class ResControl {
 		}catch(Exception e) {
 			System.out.println(e);
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		
+		}	
+	}
+	
+	@GetMapping("/Maping")
+	public ResponseEntity<Map<String,Object>> getData(){
+		return new ResponseEntity<Map<String,Object>>(Map.of("Adhar","9510","Pan","cmn","Mobile","766"),HttpStatus.OK);
 	}
 }
