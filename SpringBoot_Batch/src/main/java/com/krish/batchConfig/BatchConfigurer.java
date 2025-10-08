@@ -40,8 +40,9 @@ public class BatchConfigurer {
 		return new FlatFileItemReaderBuilder<IBMEnty>().name("IBM Batch Insertion")
 													   .resource(new FileSystemResource(Paths.get("‪E:\\ibm.csv".replaceAll("[^\\x20-\\x7E]", ""))))
 													   .delimited().delimiter(",")
-													   .names("date","open","high","close","openint","volume","refnum")
-													   .targetType(IBMEnty.class)
+													   .names("date","open","high","low","close","openint","volume","refnum")
+													  // .targetType(IBMEnty.class) // it uses default mapper, no convertion between java and csv no issue but date convetion such type of events it not works
+													   .fieldSetMapper(new BatchFieldSetMapper())
 													   .linesToSkip(1)
 													   .build();
 	}

@@ -26,7 +26,9 @@ public class IBMEnty {
 	private Double open;
 	@Column(name = "HIGH")
 	private Double high;
-	@Column(name = "LOW_CLOSE")
+	@Column(name = "LOW")
+	private Double low;
+	@Column(name = "CLOSE")
 	private Double close;
 	@Column(name = "OPEN_INT")
 	private Double openint;
